@@ -28,3 +28,24 @@ def loadCanadaData():
     for region in areas:
         loadArea(region)
 #############   End of def loadCanada()
+class Region:
+    def __init__(self, fName):
+        self.fName = fName
+        self.totalCases = self.getTotalCases() # List
+        self.totalDeaths = self.getTotalDeaths() # List
+
+    def getTotalCases(self):
+        totalCasesList = []
+        with open(self.fName, 'r') as f:
+            for line in f:
+                a = line.split(', ')
+                totalCasesList.append(a[1])
+        return totalCasesList
+
+    def getTotalDeaths(self):
+        totalDeathsList = []
+        with open(self.fName, 'r') as f:
+            for line in f:
+                a = line.split(', ')
+                totalDeathsList.append(a[2])
+        return totalDeathsList
