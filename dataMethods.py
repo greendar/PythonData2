@@ -32,14 +32,16 @@ class Region:
     def __init__(self, fName):
         self.fName = fName
         self.totalCases = self.getTotalCases() # List
+        self.newCases = self. diffListCases()
         self.totalDeaths = self.getTotalDeaths() # List
+        self.newDeaths = self.diffListDeaths()
 
     def getTotalCases(self):
         totalCasesList = []
         with open(self.fName, 'r') as f:
             for line in f:
                 a = line.split(', ')
-                totalCasesList.append(a[1])
+                totalCasesList.append(int(a[1]))
         return totalCasesList
 
     def getTotalDeaths(self):
@@ -47,5 +49,21 @@ class Region:
         with open(self.fName, 'r') as f:
             for line in f:
                 a = line.split(', ')
-                totalDeathsList.append(a[2])
+                totalDeathsList.append(int(a[2]))
         return totalDeathsList
+
+    def diffListCases(self):
+        previousTotal = 0
+        a = []
+        for item in self.totalCases:
+            a.append(item - previousTotal)
+            previousTotal = item
+        return a
+
+    def diffListDeaths(self):
+        previousTotal = 0
+        a = []
+        for item in self.totalDeaths:
+            a.append(item - previousTotal)
+            previousTotal = item
+        return a
