@@ -1,5 +1,6 @@
 import requests
 import matplotlib.pyplot as plt
+import pandas as pd
 
 def loadCanadaData():
     """Returns a csv file with data from Canada Covid 19 website """
@@ -28,6 +29,13 @@ def loadCanadaData():
 
     for region in areas:
         loadArea(region)
+
+
+def revDate(dateIn):
+    dateList = dateIn.split('-')
+    dateList.reverse()
+    return f"{dateList[0]}-{dateList[1]}-{dateList[2]}"
+
 #############   End of def loadCanada()
 class Region:
     def __init__(self, fName):
@@ -43,7 +51,7 @@ class Region:
         with open(self.fName, 'r') as f:
             for line in f:
                 a = line.split(', ')
-                dateList.append(a[0])
+                dateList.append(revDate(a[0]))
         return dateList
 
     def getTotalCases(self):
@@ -85,21 +93,18 @@ class Region:
         plt.ylabel('Total Cases')
         plt.show()
 
-"""
-import pandas as pd
-import matplotlib.pyplot as plt
 
-date_time = ["2011-09-01", "2011-08-01", "2011-07-01", "2011-06-01", "2011-05-01"]
-date_time = pd.to_datetime(date_time)
-temp = [2, 4, 6, 4, 6]
+    def newCasesDate(self):
+        date_time = self.dates
+        date_time = pd.to_datetime(date_time)
+        temp = self.newCases
 
-DF = pd.DataFrame()
-DF['temp'] = temp
-DF = DF.set_index(date_time)
+        DF = pd.DataFrame()
+        DF['temp'] = temp
+        DF = DF.set_index(date_time)
 
-fig, ax = plt.subplots()
-fig.subplots_adjust(bottom=0.3)
-plt.xticks(rotation=90)
-plt.plot(DF)
-
-"""
+        fig, ax = plt.subplots()
+        fig.subplots_adjust(bottom=0.3)
+        plt.xticks(rotation=90)
+        plt.plot(DF)
+        plt.show()
