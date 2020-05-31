@@ -1,4 +1,5 @@
 import requests
+import matplotlib.pyplot as plt
 
 def loadCanadaData():
     """Returns a csv file with data from Canada Covid 19 website """
@@ -35,6 +36,15 @@ class Region:
         self.newCases = self. diffListCases()
         self.totalDeaths = self.getTotalDeaths() # List
         self.newDeaths = self.diffListDeaths()
+        self.dates = self.getDates()
+
+    def getDates(self):
+        dateList = []
+        with open(self.fName, 'r') as f:
+            for line in f:
+                a = line.split(', ')
+                dateList.append(a[0])
+        return dateList
 
     def getTotalCases(self):
         totalCasesList = []
@@ -67,3 +77,29 @@ class Region:
             a.append(item - previousTotal)
             previousTotal = item
         return a
+
+    def graphScatter(self):
+        plt.scatter(self.newCases, self.totalCases)
+        plt.title(self.fName)
+        plt.xlabel('New Cases')
+        plt.ylabel('Total Cases')
+        plt.show()
+
+"""
+import pandas as pd
+import matplotlib.pyplot as plt
+
+date_time = ["2011-09-01", "2011-08-01", "2011-07-01", "2011-06-01", "2011-05-01"]
+date_time = pd.to_datetime(date_time)
+temp = [2, 4, 6, 4, 6]
+
+DF = pd.DataFrame()
+DF['temp'] = temp
+DF = DF.set_index(date_time)
+
+fig, ax = plt.subplots()
+fig.subplots_adjust(bottom=0.3)
+plt.xticks(rotation=90)
+plt.plot(DF)
+
+"""

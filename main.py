@@ -5,8 +5,4 @@ loadCanadaData()
 
 area = Region("Ontario.csv")
 
-a = list(range(1, len(area.totalCases)+1))
-
-print(a)
-
-graphPlot(a, area.totalCases)
+print(area.dates)
