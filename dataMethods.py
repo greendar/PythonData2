@@ -57,6 +57,22 @@ def averageFive(aList):
     return bList
 
 
+def areaMenu(listIn):
+    i = 1
+    for item in listIn:
+        print(f"{i}. {item}")
+        i += 1
+    print('X. Exit')
+    print()
+    choice = input("Which would you like?  ")
+    print()
+    if choice == "X" or choice == "x":
+        areaOut = 'Exit'
+    else:
+        areaOut = listIn[int(choice)-1]
+    return areaOut
+
+
 #############   End of def loadCanada()
 class Region:
     def __init__(self, fName):
