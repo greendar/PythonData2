@@ -4,4 +4,4 @@ loadCanadaData()
 
 area = Region("Ontario.csv")
 
-area.newCasesDate()
+area.newCasesDate5DayAvg()
