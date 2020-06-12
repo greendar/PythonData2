@@ -6,7 +6,7 @@ def loadCanadaData():
     """Returns a csv file with data from Canada Covid 19 website """
 
     def loadArea(area):
-        fileName = area + '.csv'
+        fileName = 'Data/' + area + '.csv'
         areaData = open(fileName, 'w')
 
         with open("covidData.csv", 'r') as f:
@@ -24,7 +24,7 @@ def loadCanadaData():
 
     r = requests.get(covidFile_url) # create HTTP response object
 
-    with open("covidData.csv",'wb') as f:
+    with open("Data/covidData.csv",'wb') as f:
         f.write(r.content)
 
     for region in areas:
@@ -89,7 +89,7 @@ class Region:
 
     def getDates(self):
         dateList = []
-        with open(self.fName, 'r') as f:
+        with open('Data/' + self.fName, 'r') as f:
             for line in f:
                 a = line.split(', ')
                 dateList.append(revDate(a[0]))
@@ -97,7 +97,7 @@ class Region:
 
     def getTotalCases(self):
         totalCasesList = []
-        with open(self.fName, 'r') as f:
+        with open('Data/' + self.fName, 'r') as f:
             for line in f:
                 a = line.split(', ')
                 totalCasesList.append(int(a[1]))
@@ -105,7 +105,7 @@ class Region:
 
     def getTotalDeaths(self):
         totalDeathsList = []
-        with open(self.fName, 'r') as f:
+        with open('Data/' + self.fName, 'r') as f:
             for line in f:
                 a = line.split(', ')
                 totalDeathsList.append(int(a[2]))
