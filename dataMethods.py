@@ -9,7 +9,7 @@ def loadCanadaData():
         fileName = 'Data/' + area + '.csv'
         areaData = open(fileName, 'w')
 
-        with open("covidData.csv", 'r') as f:
+        with open("Data/covidData.csv", 'r') as f:
             for line in f:
                 a = line.split(',')
                 if a[1] == area:
