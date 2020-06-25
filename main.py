@@ -1,4 +1,5 @@
 from dataMethods import *
+import sys
 
 
 areas = ['British Columbia', 'Alberta', 'Saskatchewan', 'Manitoba',
@@ -8,7 +9,10 @@ areas = ['British Columbia', 'Alberta', 'Saskatchewan', 'Manitoba',
 
 loadCanadaData()
 
-choice = areaMenu(areas)
+if len(sys.argv) > 1:
+    choice = sys.argv[1]
+else:
+    choice = areaMenu(areas)
 
 area = Region(choice + ".csv")
 
