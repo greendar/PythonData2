@@ -23,4 +23,4 @@ else: # or the internal menu
 
 area = Region(choice + ".csv")
 
-area.newCasesDate5DayAvg()
+area.newCasesDate7DayAvg()

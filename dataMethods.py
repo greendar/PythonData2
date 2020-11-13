@@ -56,6 +56,15 @@ def averageFive(aList):
         j += 1
     return bList
 
+def averageSeven(aList):
+    bList = []
+    for j in range(0, len(aList)):
+        if j >= 6:
+            bList.append(round((aList[j] + aList[j-1] + aList[j-2] + aList[j-3] + aList[j-4] + aList[j-5] + aList[j-6])/6, 2))
+        else:
+            bList.append(aList[j])
+        j += 1
+    return bList
 
 def areaMenu(listIn):
     i = 1
@@ -86,6 +95,7 @@ class Region:
         self.dates = self.getDates()
         self.newCases3DayAvg = averageThree(self.newCases)
         self.newCases5DayAvg = averageFive(self.newCases)
+        self.newCases7DayAvg = averageSeven(self.newCases)
 
     def getDates(self):
         dateList = []
@@ -180,6 +190,23 @@ class Region:
         fig.subplots_adjust(bottom=0.3)
         plt.xticks(rotation=90)
         plt.title(f"{self.name} New Cases - 5 Day Average")
+        plt.plot(DF)
+        plt.grid()
+        plt.show()
+
+    def newCasesDate7DayAvg(self):
+        date_time = self.dates
+        date_time = pd.to_datetime(date_time)
+        temp = self.newCases7DayAvg
+
+        DF = pd.DataFrame()
+        DF['temp'] = temp
+        DF = DF.set_index(date_time)
+
+        fig, ax = plt.subplots()
+        fig.subplots_adjust(bottom=0.3)
+        plt.xticks(rotation=90)
+        plt.title(f"{self.name} New Cases - 7 Day Average")
         plt.plot(DF)
         plt.grid()
         plt.show()
