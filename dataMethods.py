@@ -30,7 +30,6 @@ def loadCanadaData():
     for region in areas:
         loadArea(region)
 
-
 def revDate(dateIn):
     dateList = dateIn.split('-')
     dateList.reverse()
@@ -75,9 +74,11 @@ def averageSeven(aList):
         j += 1
     return bList
 
-def lastSevenAvg(aList):
-    j = len(aList) -1
-    return round((aList[j] + aList[j-1] + aList[j-2] + aList[j-3] + aList[j-4] + aList[j-5] + aList[j-6])/6, 2)
+def lastSevenAvg(inList):
+    """ returns that average of the last seven values of the input list
+    """
+    tempList = inList[len(inList)-7:]
+    return round(sum(tempList)/7, 1)
 
 def areaMenu(listIn):
     i = 1
