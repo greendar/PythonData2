@@ -37,6 +37,9 @@ def revDate(dateIn):
     return f"{dateList[0]}-{dateList[1]}-{dateList[2]}"
 
 def averageThree(aList):
+    """
+    Creates a list that does a moving average of the last three values of the input list.
+    """
     bList = []
     for j in range(0, len(aList)):
         if j >= 2:
@@ -47,6 +50,9 @@ def averageThree(aList):
     return bList
 
 def averageFive(aList):
+    """
+    Creates a list that does a moving average of the last five values of the input list.
+    """
     bList = []
     for j in range(0, len(aList)):
         if j >= 4:
@@ -57,6 +63,9 @@ def averageFive(aList):
     return bList
 
 def averageSeven(aList):
+    """
+    Creates a list that does a moving average of the last seven values of the input list.
+    """
     bList = []
     for j in range(0, len(aList)):
         if j >= 6:
