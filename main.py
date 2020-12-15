@@ -25,3 +25,5 @@ area = Region(choice + ".csv")
 
 area.newCasesDate7DayAvg()
 print("Seven Day Average", area.lastSevenAvg)
+
+#this is a comment
